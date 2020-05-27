@@ -16,7 +16,11 @@ const userAvatarController = new UserAvatarController();
 usersRouter.post(
   '/',
   celebrate({
-    [Segments.BODY]: {},
+    [Segments.BODY]: {
+      name: Joi.string().required(),
+      email: Joi.string().email().required(),
+      password: Joi.string().required(),
+    },
   }),
   usersController.create,
 );
